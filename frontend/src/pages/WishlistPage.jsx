@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Trash2, ShoppingCart } from "lucide-react"
-import "./pages.css"
+import { useState } from "react";
+import { Trash2, ShoppingCart } from "lucide-react";
+import "./pages.css";
 
 export default function WishlistPage() {
-  // Sample wishlist items - in a real app, this would come from context/state management
-  const [wishlistItems, setWishlistItems] = useState([
+  // Sample Wishlist items - in a real app, this would come from context/state management
+  const [WishlistItems, setWishlistItems] = useState([
     {
       id: 301,
       name: "Football Training Kit",
@@ -28,22 +28,22 @@ export default function WishlistPage() {
       category: "Golf",
       image: "/api/placeholder/300/300",
     },
-  ])
+  ]);
 
-  // Remove item from wishlist
+  // Remove item from Wishlist
   const removeItem = (id) => {
-    setWishlistItems(wishlistItems.filter((item) => item.id !== id))
-  }
+    setWishlistItems(WishlistItems.filter((item) => item.id !== id));
+  };
 
   // Move item to cart (in a real app, this would update cart state/context)
   const moveToCart = (id) => {
-    console.log(`Moving item ${id} to cart`)
+    console.log(`Moving item ${id} to cart`);
     // Here you would add the item to cart
-    // Then remove from wishlist
-    removeItem(id)
+    // Then remove from Wishlist
+    removeItem(id);
     // Show a notification that item was added to cart
-    alert("Item added to cart!")
-  }
+    alert("Item added to cart!");
+  };
 
   return (
     <div className="page">
@@ -52,24 +52,29 @@ export default function WishlistPage() {
       </div>
 
       <div className="container">
-        {wishlistItems.length === 0 ? (
+        {WishlistItems.length === 0 ? (
           <div className="empty-state">
-            <h2>Your wishlist is empty</h2>
-            <p>Save items you love to your wishlist and find them here anytime.</p>
+            <h2>Your Wishlist is empty</h2>
+            <p>
+              Save items you love to your Wishlist and find them here anytime.
+            </p>
             <a href="/" className="cta-button">
               Explore Products
             </a>
           </div>
         ) : (
-          <div className="wishlist-container">
+          <div className="Wishlist-container">
             <div className="product-grid">
-              {wishlistItems.map((item) => (
-                <div className="product-card wishlist-card" key={item.id}>
+              {WishlistItems.map((item) => (
+                <div className="product-card Wishlist-card" key={item.id}>
                   <div className="product-image">
-                    <img src={item.image || "/placeholder.svg"} alt={item.name} />
-                    <div className="wishlist-actions">
+                    <img
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.name}
+                    />
+                    <div className="Wishlist-actions">
                       <button
-                        className="wishlist-action-btn move-to-cart"
+                        className="Wishlist-action-btn move-to-cart"
                         onClick={() => moveToCart(item.id)}
                         aria-label="Add to cart"
                       >
@@ -77,9 +82,9 @@ export default function WishlistPage() {
                         <span>Add to Cart</span>
                       </button>
                       <button
-                        className="wishlist-action-btn remove"
+                        className="Wishlist-action-btn remove"
                         onClick={() => removeItem(item.id)}
-                        aria-label="Remove from wishlist"
+                        aria-label="Remove from Wishlist"
                       >
                         <Trash2 size={18} />
                         <span>Remove</span>
@@ -89,7 +94,9 @@ export default function WishlistPage() {
                   <div className="product-info">
                     <span className="product-category">{item.category}</span>
                     <h3 className="product-name">{item.name}</h3>
-                    <span className="product-price">${item.price.toFixed(2)}</span>
+                    <span className="product-price">
+                      ${item.price.toFixed(2)}
+                    </span>
                   </div>
                 </div>
               ))}
@@ -98,5 +105,5 @@ export default function WishlistPage() {
         )}
       </div>
     </div>
-  )
+  );
 }

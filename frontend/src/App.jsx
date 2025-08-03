@@ -1,36 +1,36 @@
-"use client"
+"use client";
 
-import "./App.css"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Navbar from "./components/Navbar"
-import Home from "./pages/Home"
-import CategoriesPage from "./pages/Categories"
-import NewArrivalsPage from "./pages/NewArrivalsPage"
-import SalesPage from "./pages/SalesPage"
-import ContactPage from "./pages/ContactPage"
-import CartPage from "./pages/CartPage"
-import WishlistPage from "./pages/WishListPage"
-import LoginPage from "./pages/auth/LoginPage"
-import SignupPage from "./pages/auth/SignupPage"
-import AdminSignupPage from "./pages/auth/AdminSignup"
-import AdminDashboard from "./pages/admin/AdminDashboard"
-import ProductDetailPage from "./pages/ProductDetailPage"
-import { useDispatch } from "react-redux"
-import { getCurrentUser } from "./services/api/auth"
-import { setUserData } from "./redux/features/userSlice"
-import { useEffect } from "react"
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import CategoriesPage from "./pages/Categories";
+import NewArrivalsPage from "./pages/NewArrivalsPage";
+import SalesPage from "./pages/SalesPage";
+import ContactPage from "./pages/ContactPage";
+import CartPage from "./pages/CartPage";
+import WishlistPage from "./pages/WishlistPage";
+import LoginPage from "./pages/auth/LoginPage";
+import SignupPage from "./pages/auth/SignupPage";
+import AdminSignupPage from "./pages/auth/AdminSignup";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import { useDispatch } from "react-redux";
+import { getCurrentUser } from "./services/api/auth";
+import { setUserData } from "./redux/features/userSlice";
+import { useEffect } from "react";
 
 function App() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const getUserData = async () => {
-    const user = await getCurrentUser()
-    dispatch(setUserData(user))
-  }
+    const user = await getCurrentUser();
+    dispatch(setUserData(user));
+  };
 
   useEffect(() => {
-    getUserData()
-  }, [])
+    getUserData();
+  }, []);
 
   return (
     <BrowserRouter>
@@ -112,7 +112,7 @@ function App() {
           }
         />
         <Route
-          path="/wishlist"
+          path="/Wishlist"
           element={
             <>
               <Navbar />
@@ -122,7 +122,7 @@ function App() {
         />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

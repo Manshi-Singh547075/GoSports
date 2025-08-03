@@ -1,48 +1,54 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { useParams, Link } from "react-router-dom"
-import { ShoppingCart, Heart, ArrowLeft, Check, AlertCircle } from 'lucide-react'
-import "./pages.css"
-import "./product-detail.css"
-import { getProductById } from "../services/api/product"
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import {
+  ShoppingCart,
+  Heart,
+  ArrowLeft,
+  Check,
+  AlertCircle,
+} from "lucide-react";
+import "./pages.css";
+import "./product-detail.css";
+import { getProductById } from "../services/api/product";
 
 export default function ProductDetailPage() {
-  const { productId } = useParams()
-  const [product, setProduct] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const [selectedSize, setSelectedSize] = useState("")
-  const [selectedColor, setSelectedColor] = useState("")
-  const [quantity, setQuantity] = useState(1)
+  const { productId } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        setLoading(true)
-        const data = await getProductById(productId)
+        setLoading(true);
+        const data = await getProductById(productId);
         if (data) {
-          setProduct(data)
+          setProduct(data);
           // Set default selections if available
           if (data.sizes && data.sizes.length > 0) {
-            setSelectedSize(data.sizes[0])
+            setSelectedSize(data.sizes[0]);
           }
           if (data.colors && data.colors.length > 0) {
-            setSelectedColor(data.colors[0])
+            setSelectedColor(data.colors[0]);
           }
         } else {
-          setError("Product not found")
+          setError("Product not found");
         }
       } catch (err) {
-        setError("Failed to load product")
-        console.error(err)
+        setError("Failed to load product");
+        console.error(err);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchProduct()
-  }, [productId])
+    fetchProduct();
+  }, [productId]);
 
   const handleAddToCart = () => {
     // Here you would add the product to cart with selected options
@@ -54,30 +60,30 @@ export default function ProductDetailPage() {
       quantity: quantity,
       size: selectedSize,
       color: selectedColor,
-    }
-    
-    console.log("Adding to cart:", productToAdd)
+    };
+
+    console.log("Adding to cart:", productToAdd);
     // In a real app, you would dispatch this to your cart state/context
-    alert("Product added to cart!")
-  }
+    alert("Product added to cart!");
+  };
 
   const handleAddToWishlist = () => {
-    console.log("Adding to wishlist:", product._id)
-    // In a real app, you would dispatch this to your wishlist state/context
-    alert("Product added to wishlist!")
-  }
+    console.log("Adding to Wishlist:", product._id);
+    // In a real app, you would dispatch this to your Wishlist state/context
+    alert("Product added to Wishlist!");
+  };
 
   const increaseQuantity = () => {
     if (quantity < product.quantity) {
-      setQuantity(quantity + 1)
+      setQuantity(quantity + 1);
     }
-  }
+  };
 
   const decreaseQuantity = () => {
     if (quantity > 1) {
-      setQuantity(quantity - 1)
+      setQuantity(quantity - 1);
     }
-  }
+  };
 
   if (loading) {
     return (
@@ -89,7 +95,7 @@ export default function ProductDetailPage() {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   if (error) {
@@ -106,7 +112,7 @@ export default function ProductDetailPage() {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   if (!product) {
@@ -116,14 +122,16 @@ export default function ProductDetailPage() {
           <div className="error-container">
             <AlertCircle size={48} className="error-icon" />
             <h2>Product Not Found</h2>
-            <p>The product you're looking for doesn't exist or has been removed.</p>
+            <p>
+              The product you're looking for doesn't exist or has been removed.
+            </p>
             <Link to="/" className="cta-button">
               Return to Home
             </Link>
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   // Calculate sale price if applicable
@@ -131,7 +139,7 @@ export default function ProductDetailPage() {
     ? product.sale.discountPercentage
       ? product.price - (product.price * product.sale.discountPercentage) / 100
       : product.price - (product.sale.discountAmount || 0)
-    : null
+    : null;
 
   return (
     <div className="page">
@@ -147,10 +155,15 @@ export default function ProductDetailPage() {
           <div className="product-detail-content">
             <div className="product-detail-image">
               <img
-                src={product.image || "https://rakanonline.com/wp-content/uploads/2022/08/default-product-image.png"}
+                src={
+                  product.image ||
+                  "https://rakanonline.com/wp-content/uploads/2022/08/default-product-image.png"
+                }
                 alt={product.name}
               />
-              {product.sale?.live && <span className="product-detail-badge">Sale</span>}
+              {product.sale?.live && (
+                <span className="product-detail-badge">Sale</span>
+              )}
             </div>
 
             <div className="product-detail-info">
@@ -160,7 +173,8 @@ export default function ProductDetailPage() {
                   <span>{product.category?.name || "Uncategorized"}</span>
                   {product.gender && product.gender !== "both" && (
                     <span className="product-gender">
-                      {product.gender.charAt(0).toUpperCase() + product.gender.slice(1)}
+                      {product.gender.charAt(0).toUpperCase() +
+                        product.gender.slice(1)}
                     </span>
                   )}
                 </div>
@@ -169,7 +183,9 @@ export default function ProductDetailPage() {
               <div className="product-detail-price">
                 {salePrice ? (
                   <>
-                    <span className="original-price">${product.price.toFixed(2)}</span>
+                    <span className="original-price">
+                      ${product.price.toFixed(2)}
+                    </span>
                     <span className="sale-price">${salePrice.toFixed(2)}</span>
                     <span className="discount-badge">
                       {product.sale.discountPercentage
@@ -178,12 +194,18 @@ export default function ProductDetailPage() {
                     </span>
                   </>
                 ) : (
-                  <span className="current-price">${product.price.toFixed(2)}</span>
+                  <span className="current-price">
+                    ${product.price.toFixed(2)}
+                  </span>
                 )}
               </div>
 
               <div className="product-detail-stock">
-                <span className={`stock-status ${product.quantity > 0 ? "in-stock" : "out-of-stock"}`}>
+                <span
+                  className={`stock-status ${
+                    product.quantity > 0 ? "in-stock" : "out-of-stock"
+                  }`}
+                >
                   {product.quantity > 0 ? (
                     <>
                       <Check size={16} /> In Stock
@@ -193,7 +215,9 @@ export default function ProductDetailPage() {
                   )}
                 </span>
                 {product.quantity > 0 && product.quantity < 10 && (
-                  <span className="low-stock">Only {product.quantity} left</span>
+                  <span className="low-stock">
+                    Only {product.quantity} left
+                  </span>
                 )}
               </div>
 
@@ -206,7 +230,9 @@ export default function ProductDetailPage() {
                         {product.sizes.map((size) => (
                           <button
                             key={size}
-                            className={`size-option ${selectedSize === size ? "selected" : ""}`}
+                            className={`size-option ${
+                              selectedSize === size ? "selected" : ""
+                            }`}
                             onClick={() => setSelectedSize(size)}
                           >
                             {size}
@@ -218,21 +244,32 @@ export default function ProductDetailPage() {
 
                   {product?.wearType && (
                     <div className="product-detail-type">
-                      <span>Type: {product?.wearType?.charAt(0).toUpperCase() + product?.wearType?.slice(1)}</span>
+                      <span>
+                        Type:{" "}
+                        {product?.wearType?.charAt(0).toUpperCase() +
+                          product?.wearType?.slice(1)}
+                      </span>
                     </div>
                   )}
                 </>
               )}
 
-
               <div className="product-detail-quantity">
                 <h3>Quantity</h3>
                 <div className="quantity-selector">
-                  <button className="quantity-btn" onClick={decreaseQuantity} disabled={quantity <= 1}>
+                  <button
+                    className="quantity-btn"
+                    onClick={decreaseQuantity}
+                    disabled={quantity <= 1}
+                  >
                     -
                   </button>
                   <span className="quantity-value">{quantity}</span>
-                  <button className="quantity-btn" onClick={increaseQuantity} disabled={quantity >= product.quantity}>
+                  <button
+                    className="quantity-btn"
+                    onClick={increaseQuantity}
+                    disabled={quantity >= product.quantity}
+                  >
                     +
                   </button>
                 </div>
@@ -247,7 +284,7 @@ export default function ProductDetailPage() {
                   <ShoppingCart size={18} />
                   <span>Add to Cart</span>
                 </button>
-                <button className="wishlist-btn" onClick={handleAddToWishlist}>
+                <button className="Wishlist-btn" onClick={handleAddToWishlist}>
                   <Heart size={18} />
                   <span>Add to Wishlist</span>
                 </button>
@@ -257,14 +294,16 @@ export default function ProductDetailPage() {
                 <div className="product-meta-item">
                   <span className="meta-label">Product Type:</span>
                   <span className="meta-value">
-                    {product?.productType?.charAt(0)?.toUpperCase() + product?.productType?.slice(1)}
+                    {product?.productType?.charAt(0)?.toUpperCase() +
+                      product?.productType?.slice(1)}
                   </span>
                 </div>
                 {product.gender && (
                   <div className="product-meta-item">
                     <span className="meta-label">Gender:</span>
                     <span className="meta-value">
-                      {product.gender.charAt(0).toUpperCase() + product.gender.slice(1)}
+                      {product.gender.charAt(0).toUpperCase() +
+                        product.gender.slice(1)}
                     </span>
                   </div>
                 )}
@@ -274,5 +313,5 @@ export default function ProductDetailPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

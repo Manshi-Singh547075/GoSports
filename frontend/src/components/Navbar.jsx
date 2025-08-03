@@ -1,61 +1,73 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { Search, ShoppingCart, Menu, X, User, Heart, LogOut, Settings } from "lucide-react"
-import "./Navbar.css"
-import { logoutUser } from "../services/api/auth"
-import { useSelector } from "react-redux"
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  Search,
+  ShoppingCart,
+  Menu,
+  X,
+  User,
+  Heart,
+  LogOut,
+  Settings,
+} from "lucide-react";
+import "./Navbar.css";
+import { logoutUser } from "../services/api/auth";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [cartCount, setCartCount] = useState(2)
-  const [wishlistCount, setWishlistCount] = useState(3)
-  const [showCategoryDropdown, setShowCategoryDropdown] = useState(false)
-  const [showUserDropdown, setShowUserDropdown] = useState(false)
-  const [searchQuery, setSearchQuery] = useState("")
-  const user = useSelector((state) => state.userData.value) ?? null
-  const navigate = useNavigate()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(2);
+  const [WishlistCount, setWishlistCount] = useState(3);
+  const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
+  const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const user = useSelector((state) => state.userData.value) ?? null;
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const toggleCategoryDropdown = () => {
-    setShowCategoryDropdown(!showCategoryDropdown)
-  }
+    setShowCategoryDropdown(!showCategoryDropdown);
+  };
 
   const toggleUserDropdown = () => {
-    setShowUserDropdown(!showUserDropdown)
-  }
+    setShowUserDropdown(!showUserDropdown);
+  };
 
   const handleSearch = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // Implement search functionality
-    console.log("Searching for:", searchQuery)
+    console.log("Searching for:", searchQuery);
     // Navigate to search results page
     // navigate(`/search?q=${encodeURIComponent(searchQuery)}`)
-  }
+  };
 
   const handleLogout = async () => {
-    logoutUser()
-    navigate("/login")
-    setShowUserDropdown(false)
-  }
+    logoutUser();
+    navigate("/login");
+    setShowUserDropdown(false);
+  };
 
   // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (showUserDropdown && !event.target.closest(".user-dropdown-container")) {
-        setShowUserDropdown(false)
+      if (
+        showUserDropdown &&
+        !event.target.closest(".user-dropdown-container")
+      ) {
+        setShowUserDropdown(false);
       }
-    }
+    };
 
-    document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [showUserDropdown])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showUserDropdown]);
 
   return (
     <nav className="navbar">
@@ -82,7 +94,11 @@ export default function Navbar() {
               <Link to="/categories" className="nav-link">
                 Categories
               </Link>
-              <div className={`dropdown-content ${showCategoryDropdown ? "show" : ""}`}>
+              <div
+                className={`dropdown-content ${
+                  showCategoryDropdown ? "show" : ""
+                }`}
+              >
                 <Link to="#" className="dropdown-item">
                   Running
                 </Link>
@@ -135,7 +151,9 @@ export default function Navbar() {
                   {user ? (
                     <>
                       <div className="user-info">
-                        <span className="user-name">{user.name || user.email}</span>
+                        <span className="user-name">
+                          {user.name || user.email}
+                        </span>
                         <span className="user-email">{user.email}</span>
                       </div>
                       <div className="dropdown-divider"></div>
@@ -146,7 +164,10 @@ export default function Navbar() {
                           <span>Admin Dashboard</span>
                         </Link>
                       )}
-                      <button onClick={handleLogout} className="dropdown-item logout-item">
+                      <button
+                        onClick={handleLogout}
+                        className="dropdown-item logout-item"
+                      >
                         <LogOut size={16} />
                         <span>Logout</span>
                       </button>
@@ -166,9 +187,11 @@ export default function Navbar() {
             </div>
 
             {/* Wishlist */}
-            <Link to="/wishlist" className="action-icon">
+            <Link to="/Wishlist" className="action-icon">
               <Heart />
-              {wishlistCount > 0 && <span className="cart-badge">{wishlistCount}</span>}
+              {WishlistCount > 0 && (
+                <span className="cart-badge">{WishlistCount}</span>
+              )}
             </Link>
 
             {/* Cart */}
@@ -190,23 +213,47 @@ export default function Navbar() {
       {/* Mobile Navigation */}
       <div className={`mobile-menu ${isMenuOpen ? "show" : ""}`}>
         <div className="mobile-nav-links">
-          <Link to="/" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
+          <Link
+            to="/"
+            className="mobile-nav-link"
+            onClick={() => setIsMenuOpen(false)}
+          >
             Home
           </Link>
-          <Link to="/categories" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
+          <Link
+            to="/categories"
+            className="mobile-nav-link"
+            onClick={() => setIsMenuOpen(false)}
+          >
             Categories
           </Link>
-          <Link to="/new-arrivals" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
+          <Link
+            to="/new-arrivals"
+            className="mobile-nav-link"
+            onClick={() => setIsMenuOpen(false)}
+          >
             New Arrivals
           </Link>
-          <Link to="/sales" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
+          <Link
+            to="/sales"
+            className="mobile-nav-link"
+            onClick={() => setIsMenuOpen(false)}
+          >
             Sales
           </Link>
-          <Link to="/contact" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
+          <Link
+            to="/contact"
+            className="mobile-nav-link"
+            onClick={() => setIsMenuOpen(false)}
+          >
             Contact
           </Link>
           {user && user.role === "admin" && (
-            <Link to="/admin/dashboard" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
+            <Link
+              to="/admin/dashboard"
+              className="mobile-nav-link"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Admin Dashboard
             </Link>
           )}
@@ -231,15 +278,26 @@ export default function Navbar() {
                   <span>Hello, {user.name || user.email.split("@")[0]}</span>
                 </div>
                 <div className="mobile-action-buttons">
-                  <Link to="/wishlist" className="mobile-action-link" onClick={() => setIsMenuOpen(false)}>
+                  <Link
+                    to="/Wishlist"
+                    className="mobile-action-link"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
                     <Heart />
-                    <span>Wishlist ({wishlistCount})</span>
+                    <span>Wishlist ({WishlistCount})</span>
                   </Link>
-                  <Link to="/cart" className="mobile-action-link" onClick={() => setIsMenuOpen(false)}>
+                  <Link
+                    to="/cart"
+                    className="mobile-action-link"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
                     <ShoppingCart />
                     <span>Cart ({cartCount})</span>
                   </Link>
-                  <button onClick={handleLogout} className="mobile-action-link logout-button">
+                  <button
+                    onClick={handleLogout}
+                    className="mobile-action-link logout-button"
+                  >
                     <LogOut size={18} />
                     <span>Logout</span>
                   </button>
@@ -247,10 +305,18 @@ export default function Navbar() {
               </>
             ) : (
               <div className="mobile-auth-buttons">
-                <Link to="/login" className="mobile-auth-button" onClick={() => setIsMenuOpen(false)}>
+                <Link
+                  to="/login"
+                  className="mobile-auth-button"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   Sign In
                 </Link>
-                <Link to="/signup" className="mobile-auth-button signup" onClick={() => setIsMenuOpen(false)}>
+                <Link
+                  to="/signup"
+                  className="mobile-auth-button signup"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   Create Account
                 </Link>
               </div>
@@ -259,5 +325,5 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
