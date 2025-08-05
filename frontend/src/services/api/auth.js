@@ -38,7 +38,7 @@ export const logoutUser = async () => {
 export const getCurrentUser = async () => {
   try {
     const token = Cookies.get("token");
-    let res = await axios.get(`${BaseUrl}/user`,{
+    let res = await axios.get(`${BaseUrl}/user`, {withCredentials: true ,
       headers:{
         Authorization:`Bearer ${token}`
       }
