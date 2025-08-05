@@ -43,4 +43,9 @@ const signup = async(req,res)=>{
     res.status(400).json({message:error.message})
   }
 }
-module.exports = {login,signup}
+const logout = (req, res) => {
+  // If you're using cookies, you can clear it here
+  res.clearCookie("token"); // only if token was stored in cookie
+  res.status(200).json({ message: "Logged out successfully" });
+};
+module.exports = {login,signup,logout}

@@ -29,12 +29,13 @@ export const registerUser = async (userData) => {
 }
 
 export const logoutUser = async () => {
-  // create api to destroy token from backend
   Cookies.remove("token");
-  await axios.post(`${BaseUrl}/auth/logout`, {});
-
+  try {
+    await axios.post(`${BaseUrl}/auth/logout`);
+  } catch (error) {
+    console.log("Logout error:", error.message);
+  }
 }
-
 export const getCurrentUser = async () => {
   try {
     const token = Cookies.get("token");

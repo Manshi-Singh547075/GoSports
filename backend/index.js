@@ -4,8 +4,16 @@ const app = express();
 const PORT = 4000;
 const cors = require("cors")
 
+const allowedOrigins = ["http://localhost:5173", "https://6891a7c70f9f99af3e75b067--dainty-klepon-9275d5.netlify.app/"];
+
 app.use(cors({
-  origin: ["http://localhost:5173", "https://688fa67a9c083eabe9af0a50--dainty-klepon-9275d5.netlify.app"],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
 app.use(express.json());
