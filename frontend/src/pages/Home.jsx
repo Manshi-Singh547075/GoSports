@@ -88,10 +88,7 @@ export default function Home() {
                   <Link to={`/product/${product._id}`} className="product-link">
                     <div className="product-image">
                       <img
-                        src={
-                          product.image ||
-                          "https://rakanonline.com/wp-content/uploads/2022/08/default-product-image.png"
-                        }
+                        src={product.image || "https://assets.adidas.com/images/w_600,f_auto,q_auto/0b9d46b47c114a43a36faf1500889035_9366/Adicolor_Classics_Sprinter_Shorts_Black_HS2069_01_laydown.jpg"}
                         alt={product.name}
                       />
                       {product?.sale?.live && <span className="sale-badge">Sale</span>}
