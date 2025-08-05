@@ -12,7 +12,7 @@ export default function CartPage() {
       name: "Pro Runner Shoes",
       price: 129.99,
       category: "Running",
-      image: "/api/placeholder/300/300",
+      image: "https://www.campusshoes.com/cdn/shop/products/FLOWPRO_22G-957_L.GRY-F.ORG_2.jpg?v=1753800235",
       quantity: 1,
     },
     {
@@ -20,7 +20,7 @@ export default function CartPage() {
       name: "Indoor Basketball",
       price: 59.99,
       category: "Basketball",
-      image: "/api/placeholder/300/300",
+      image: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png",
       quantity: 2,
     },
   ])
@@ -59,57 +59,48 @@ export default function CartPage() {
             </a>
           </div>
         ) : (
-          <div className="cart-container">
-            <div className="cart-items">
-              <div className="cart-header">
-                <span className="product-col">Product</span>
-                <span className="price-col">Price</span>
-                <span className="quantity-col">Quantity</span>
-                <span className="total-col">Total</span>
-                <span className="action-col"></span>
-              </div>
-
+          <div className="cart-layout">
+            <div className="product-grid">
               {cartItems.map((item) => (
-                <div className="cart-item" key={item.id}>
-                  <div className="product-col">
-                    <div className="cart-product">
-                      <img src={item.image || "/placeholder.svg"} alt={item.name} className="cart-product-image" />
-                      <div className="cart-product-info">
-                        <h3>{item.name}</h3>
-                        <span className="product-category">{item.category}</span>
+                <div className="product-card Wishlist-card" key={item.id}>
+                  <div className="product-image">
+                    <img src={item.image || "/placeholder.svg"} alt={item.name} />
+                    <div className="Wishlist-actions">
+                      <div className="quantity-adjuster" style={{alignSelf: "center"}}>
+                        <button
+                          className="Wishlist-action-btn"
+                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          aria-label="Decrease quantity"
+                        >
+                          <Minus size={16} />
+                        </button>
+                        <span className="quantity-value">{item.quantity}</span>
+                        <button
+                          className="Wishlist-action-btn"
+                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          aria-label="Increase quantity"
+                        >
+                          <Plus size={16} />
+                        </button>
                       </div>
-                    </div>
-                  </div>
-                  <div className="price-col">${item.price.toFixed(2)}</div>
-                  <div className="quantity-col">
-                    <div className="quantity-adjuster">
                       <button
-                        className="quantity-btn"
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        aria-label="Decrease quantity"
+                        className="Wishlist-action-btn remove"
+                        onClick={() => removeItem(item.id)}
+                        aria-label="Remove from cart"
                       >
-                        <Minus size={16} />
-                      </button>
-                      <span className="quantity-value">{item.quantity}</span>
-                      <button
-                        className="quantity-btn"
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        aria-label="Increase quantity"
-                      >
-                        <Plus size={16} />
+                        <Trash2 size={18} />
+                        <span>Remove</span>
                       </button>
                     </div>
                   </div>
-                  <div className="total-col">${(item.price * item.quantity).toFixed(2)}</div>
-                  <div className="action-col">
-                    <button className="remove-btn" onClick={() => removeItem(item.id)} aria-label="Remove item">
-                      <Trash2 size={18} />
-                    </button>
+                  <div className="product-info">
+                    <span className="product-category">{item.category}</span>
+                    <h3 className="product-name">{item.name}</h3>
+                    <span className="product-price">${item.price.toFixed(2)}</span>
                   </div>
                 </div>
               ))}
             </div>
-
             <div className="cart-summary">
               <h2>Order Summary</h2>
               <div className="summary-row">
@@ -117,7 +108,7 @@ export default function CartPage() {
                 <span>${subtotal.toFixed(2)}</span>
               </div>
               <div className="summary-row">
-                <span>Tax</span>
+                <span>Tax (8%)</span>
                 <span>${tax.toFixed(2)}</span>
               </div>
               <div className="summary-row">
@@ -131,9 +122,6 @@ export default function CartPage() {
               <button className="checkout-btn">
                 Proceed to Checkout <ArrowRight size={16} className="ml-2" />
               </button>
-              <a href="/" className="continue-shopping">
-                Continue Shopping
-              </a>
             </div>
           </div>
         )}

@@ -20,7 +20,7 @@ export default function NewArrivalsPage() {
       price: 89.99,
       category: "Running",
       date: "New this week",
-      image: "/api/placeholder/300/300",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmJYHGILIAPoVGxX7a13GRXFK8ovIeeUifLg&s",
     },
     {
       id: 1002,
@@ -28,7 +28,7 @@ export default function NewArrivalsPage() {
       price: 49.99,
       category: "Basketball",
       date: "New this week",
-      image: "/api/placeholder/300/300",
+      image: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png",
     },
     {
       id: 1003,
@@ -36,7 +36,7 @@ export default function NewArrivalsPage() {
       price: 179.99,
       category: "Football",
       date: "New this week",
-      image: "/api/placeholder/300/300",
+      image: "https://m.media-amazon.com/images/I/71zl6r267SL._SL1500_.jpg",
     },
     {
       id: 1004,
@@ -44,7 +44,7 @@ export default function NewArrivalsPage() {
       price: 249.99,
       category: "Tennis",
       date: "New this week",
-      image: "/api/placeholder/300/300",
+      image: "https://nwscdn.com/media/wysiwyg/3kf/tennis/Well_Balanced_Tennis_Racket_For_Senior_Tennis_Players.jpg",
     },
     {
       id: 1005,
@@ -52,7 +52,7 @@ export default function NewArrivalsPage() {
       price: 69.99,
       category: "Basketball",
       date: "Just arrived",
-      image: "/api/placeholder/300/300",
+      image: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png",
     },
     {
       id: 1006,
@@ -60,7 +60,7 @@ export default function NewArrivalsPage() {
       price: 34.99,
       category: "Swimming",
       date: "Just arrived",
-      image: "/api/placeholder/300/300",
+      image: "https://m.media-amazon.com/images/I/61TMyMBwZoL._AC_.jpg",
     },
     {
       id: 1007,
@@ -68,7 +68,7 @@ export default function NewArrivalsPage() {
       price: 59.99,
       category: "Running",
       date: "Just arrived",
-      image: "/api/placeholder/300/300",
+      image: "https://contents.mediadecathlon.com/p1808712/10ef0bf046fd4a91fd01119f7d00da99/p1808712.jpg?format=auto&quality=70&f=2520x0",
     },
     {
       id: 1008,
@@ -76,7 +76,7 @@ export default function NewArrivalsPage() {
       price: 199.99,
       category: "Golf",
       date: "Just arrived",
-      image: "/api/placeholder/300/300",
+      image: "https://m.media-amazon.com/images/I/61fzgfwFV9L.jpg",
     },
   ]
 

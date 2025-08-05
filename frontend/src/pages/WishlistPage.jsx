@@ -12,21 +12,21 @@ export default function WishlistPage() {
       name: "Football Training Kit",
       price: 149.99,
       category: "Football",
-      image: "/api/placeholder/300/300",
+      image: "https://m.media-amazon.com/images/I/61Sizv3qAJL._UF894,1000_QL80_.jpg",
     },
     {
       id: 401,
       name: "Tennis Racket Elite",
       price: 199.99,
       category: "Tennis",
-      image: "/api/placeholder/300/300",
+      image: "https://nwscdn.com/media/wysiwyg/3kf/tennis/Well_Balanced_Tennis_Racket_For_Senior_Tennis_Players.jpg",
     },
     {
       id: 501,
       name: "Golf Clubs Set",
       price: 899.99,
       category: "Golf",
-      image: "/api/placeholder/300/300",
+      image: "https://m.media-amazon.com/images/I/61YzKczrUQL._AC_SL1000_.jpg",
     },
   ]);
 
