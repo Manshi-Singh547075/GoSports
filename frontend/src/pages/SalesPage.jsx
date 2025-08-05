@@ -25,7 +25,7 @@ export default function SalesPage() {
       salePrice: 89.99,
       discount: "30%",
       category: "Running",
-      image: "/api/placeholder/300/300",
+      image: "https://www.campusshoes.com/cdn/shop/products/FLOWPRO_22G-957_L.GRY-F.ORG_2.jpg?v=1753800235",
     },
     {
       id: 602,
@@ -34,7 +34,7 @@ export default function SalesPage() {
       salePrice: 59.99,
       discount: "25%",
       category: "Basketball",
-      image: "/api/placeholder/300/300",
+      image: "https://images-cdn.ubuy.ae/637b7bd59f81d961f57eee36-men-39-s-23-90s-basketball-jersey.jpg",
     },
     {
       id: 603,
@@ -43,7 +43,7 @@ export default function SalesPage() {
       salePrice: 34.99,
       discount: "30%",
       category: "Football",
-      image: "/api/placeholder/300/300",
+      image: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Football_Pallo_valmiina-cropped.jpg",
     },
     {
       id: 604,
@@ -52,7 +52,7 @@ export default function SalesPage() {
       salePrice: 149.99,
       discount: "25%",
       category: "Tennis",
-      image: "/api/placeholder/300/300",
+      image: "https://m.media-amazon.com/images/I/710Xb7iimJL._UF894,1000_QL80_.jpg",
     },
     {
       id: 605,
@@ -61,7 +61,7 @@ export default function SalesPage() {
       salePrice: 199.99,
       discount: "33%",
       category: "Golf",
-      image: "/api/placeholder/300/300",
+      image: "https://m.media-amazon.com/images/I/61YzKczrUQL._AC_SL1000_.jpg",
     },
     {
       id: 606,
@@ -70,7 +70,7 @@ export default function SalesPage() {
       salePrice: 19.99,
       discount: "33%",
       category: "Running",
-      image: "/api/placeholder/300/300",
+      image: "https://m.media-amazon.com/images/I/61D4vaYpPUL._UY1100_.jpg",
     },
     {
       id: 607,
@@ -79,7 +79,7 @@ export default function SalesPage() {
       salePrice: 99.99,
       discount: "33%",
       category: "Basketball",
-      image: "/api/placeholder/300/300",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbUiiqcEZfdm_TjXZKmtFqCH7I_o7nvN88xDQdceafeuvRZroH7qf1qPgVnP32rFxtPiw&usqp=CAU",
     },
     {
       id: 608,
@@ -88,7 +88,7 @@ export default function SalesPage() {
       salePrice: 12.99,
       discount: "35%",
       category: "Tennis",
-      image: "/api/placeholder/300/300",
+      image: "https://contents.mediadecathlon.com/p382218/516210831fa03daeb4e6ecdb2881a3a4/p382218.jpg?format=auto&quality=70&f=2520x0",
     },
     {
       id: 609,
@@ -97,7 +97,7 @@ export default function SalesPage() {
       salePrice: 24.99,
       discount: "37%",
       category: "Football",
-      image: "/api/placeholder/300/300",
+      image: "https://images.meesho.com/images/products/454661763/hokcv_512.jpg",
     },
     {
       id: 610,
@@ -106,7 +106,7 @@ export default function SalesPage() {
       salePrice: 59.99,
       discount: "33%",
       category: "Golf",
-      image: "/api/placeholder/300/300",
+      image: "https://primeputt.com/cdn/shop/articles/indoor-golf-tips.webp?v=1686264989",
     },
   ]
 
