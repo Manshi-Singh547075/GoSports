@@ -5,7 +5,6 @@ const getUser = async (req,res)=>{
     const user = req.user;
     res.status(200).json({message:"user fetched Successfully",user})
   } catch (error) {
-    res.status(400).json({message:error.message})
   }
 }
 

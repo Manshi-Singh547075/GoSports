@@ -4,18 +4,7 @@ const app = express();
 const PORT = 4000;
 const cors = require("cors")
 
-const allowedOrigins = ["http://localhost:5173", "https://6891a7c70f9f99af3e75b067--dainty-klepon-9275d5.netlify.app/"];
-
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const connectDb = require("./db");
