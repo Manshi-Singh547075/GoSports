@@ -1,6 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-const BaseUrl = "http://localhost:4000";
+const BaseUrl = import.meta.env.VITE_API_BASE_URL
 
 export const getAllProducts = async (
   name,
@@ -37,7 +37,7 @@ export const getAllProducts = async (
       params.productType = productType;
     }
 
-    const res = await axios.get(BaseUrl + "/product/all", params);
+    const res = await axios.get(`${BaseUrl}/product/all`, params);
     return res.data.products;
   } catch (error) {
     return [];
@@ -60,7 +60,7 @@ export const createCategory = async (categoryName)=>{
       name:categoryName
     }
     const token = Cookies.get("token");
-    const res = await axios.post(BaseUrl+"/product/category/create",payload,{
+    const res = await axios.post(`${BaseUrl}/product/category/create`,payload,{
       headers:{
         Authorization:`Bearer ${token}`
       }
@@ -73,7 +73,7 @@ export const createCategory = async (categoryName)=>{
 
 export const getAllCategories = async ()=>{
   try {
-    let res = await axios.get(BaseUrl+"/product/categories");
+    let res = await axios.get(`${BaseUrl}/product/categories`);
     return res.data.categories;
   } catch (error) {
     console.log(error);

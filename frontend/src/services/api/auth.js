@@ -10,9 +10,7 @@ export const loginUser = async (email, password) => {
       password
     }
     // let res = await axios.post(BaseUrl+"/auth/login",{email,password});
-    let res = await axios.post(`${BaseUrl}/auth/login`,payload,{
-      withCredentials:true
-    });
+    let res = await axios.post(`${BaseUrl}/auth/login`,payload);
     Cookies.set("token",res.data.token,{expires:7});
     return res.data.user;
   } catch (error) {
@@ -22,7 +20,7 @@ export const loginUser = async (email, password) => {
 
 export const registerUser = async (userData) => {
   try {
-    let res = await axios.post(BaseUrl+"/auth/register",userData);
+    let res = await axios.post(`${BaseUrl}/auth/register`,userData);
     Cookies.set("token",res.data.token,{expires:7});
     return res.data.user;
   } catch (error) {
@@ -33,14 +31,14 @@ export const registerUser = async (userData) => {
 export const logoutUser = async () => {
   // create api to destroy token from backend
   Cookies.remove("token");
-  await axios.post(`${BaseUrl}/auth/logout`, {}, { withCredentials: true });
+  await axios.post(`${BaseUrl}/auth/logout`, {});
 
 }
 
 export const getCurrentUser = async () => {
   try {
     const token = Cookies.get("token");
-    let res = await axios.get(BaseUrl+"/user",{
+    let res = await axios.get(`${BaseUrl}/user`,{
       headers:{
         Authorization:`Bearer ${token}`
       }

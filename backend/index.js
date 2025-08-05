@@ -4,7 +4,10 @@ const app = express();
 const PORT = 4000;
 const cors = require("cors")
 
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:5173", "https://688fa67a9c083eabe9af0a50--dainty-klepon-9275d5.netlify.app"],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const connectDb = require("./db");
